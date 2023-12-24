@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "electronics_shop_project"
+version = "0.1.0"
+description = ""
+authors = ["tumbaymba <tumbaymbajamalumba@gmail.com>"]
+readme = "README.md"
+packages = [{include = "electronics_shop_project"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
