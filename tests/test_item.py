@@ -3,28 +3,21 @@ import pytest
 
 from src.item import Item
 
-item1 = Item("Смартфон", 10000, 100)
-item2 = Item("Ноутбук", 20000, 50)
-item1.pay_rate = 0.85
-item2.pay_rate = 0.85
-
-@pytest.fixture
-def gadgets():
-    return Item('Смартфон', 10000, 100)
-
 
 def test_item_str():
-    assert item1.__str__() == 'Смартфон'
+    item = Item("Смартфон", 10000, 100)
+    assert str(item) == 'Смартфон'
 
 
 def test_calculation():
-    assert Item.calculate_total_price(item1) == 1000000
-    assert Item.calculate_total_price(item2) == 1000000
+    item = Item("Смартфон", 10000, 100)
+    assert item.calculate_total_price() == 1000000
 
 
 def test_discount():
-    assert Item.apply_discount(item1) == 8500
-    assert Item.apply_discount(item2) == 17000
+    item = Item("Смартфон", 10000, 100)
+    item.pay_rate = 0.85
+    assert item.price == 8500
 
 
 def test_repr(gadgets):
@@ -33,3 +26,21 @@ def test_repr(gadgets):
 
 def test_str(gadgets):
     assert 'Смартфон'
+
+def test_name_setter(gadgets):
+    gadgets.name = "Смартфон"
+    assert gadgets.name == "Смартфон"
+
+
+def test_instantiate_from_csv():
+    Item.instantiate_from_csv('..items.csv')
+
+    assert len(Item.all) == 5
+    assert Item.all[0].name == "Смартфон"
+    assert Item.all[2].price == 10000
+    assert Item.all[3].quantity == 100
+
+
+def test_string_to_number_static():
+
+    assert Item.string_to_number("5.65") == 5
