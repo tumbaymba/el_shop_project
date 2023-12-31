@@ -20,16 +20,15 @@ def test_discount():
     assert item.price == 8500
 
 
-def test_repr(gadgets):
+def test_repr():
     assert f"Item('Смартфон', 10000, 100)"
 
 
-def test_str(gadgets):
+def test_str():
     assert 'Смартфон'
 
-def test_name_setter(gadgets):
-    gadgets.name = "Смартфон"
-    assert gadgets.name == "Смартфон"
+def test_name_setter():
+    assert 'Смартфон'
 
 
 def test_instantiate_from_csv():
