@@ -45,7 +45,7 @@ class Item:
             self.__name = len_name
         elif len(len_name) > 10:
             raise ValueError("Количество букв в наименовании больше 10")
-        self.__name = len_name
+        self.__name = len_name[:10]
 
 
     def calculate_total_price(self):
