@@ -26,7 +26,7 @@ def test_discount():
 
 
 def test_repr():
-    assert f"Item('Смартфон', 1000, 20)"
+    assert f"Item('Смартфон', 10000, 20)"
 
 
 def test_str():
