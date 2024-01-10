@@ -22,11 +22,11 @@ class Item:
     def __str__(self):
         return f'{self.__name}'
 
-    file = "..src/items.csv"
+    file = "../src/items.csv"
     @classmethod
     def instantiate_from_csv(cls) -> None:
         Item.all = []
-        with open(os.path.join(os.path.dirname(__file__), '..src/items.csv'), 'r', newline='', encoding='cp1251') as csvfile:
+        with open(os.path.join(os.path.dirname(__file__), '../src/items.csv'), 'r', newline='', encoding='cp1251') as csvfile:
             data = csv.DictReader(csvfile)
             product: dict
             for product in data:
