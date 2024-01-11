@@ -26,7 +26,6 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls, file) -> None:
         Item.all = []
-        file = "../src/items.csv"
 
         ''' если отработать через контекстный менеджер в более упрощенном варианте, то всё работает
         with open(file, "r") as file:
