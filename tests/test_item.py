@@ -36,9 +36,10 @@ def test_name_setter():
     assert 'Смартфон'
 
 
-def test_instantiate_from_csv():
+def test_instantiate_from_csv(file="../src/items.csv"):
     #Item.instantiate_from_csv("src/items.csv")
     #assert len(Item.instantiate_from_csv("src/items.csv")) == 5
+
     assert len(Item.all) == 5
     assert Item.all[0].name == "Смартфон"
     assert Item.all[2].price == 10000

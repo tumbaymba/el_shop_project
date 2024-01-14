@@ -24,15 +24,11 @@ class Item:
 
     file = "../src/items.csv"
     @classmethod
-    def instantiate_from_csv(cls, file) -> None:
+    def instantiate_from_csv(cls, file="../src/items.csv") -> None:
         Item.all = []
+        cls.all.clear
 
-        ''' если отработать через контекстный менеджер в более упрощенном варианте, то всё работает
-        with open(file, "r") as file:
-        content = file.read()
-        print(content) '''
-
-        with open(os.path.join(os.path.dirname(file)), 'r') as csvfile:
+        with open("../src/items.csv", 'r') as csvfile:
             content = csvfile.read()
             print(content)
             data = csv.DictReader(csvfile)
