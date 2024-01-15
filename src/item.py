@@ -29,8 +29,8 @@ class Item:
         cls.all.clear
 
         with open("../src/items.csv", 'r') as csvfile:
-            content = csvfile.read()
-            print(content)
+            #content = csvfile.read()
+            #print(content)
             data = csv.DictReader(csvfile)
             product: dict
             for product in data:
