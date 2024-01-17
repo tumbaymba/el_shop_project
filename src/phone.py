@@ -25,8 +25,4 @@ class Phone(Item):
             raise ValueError('Количество симкарт должно быть больше нуля.')
         self._number_of_sim = value
 
-    def __add__(self, other) -> int | None:
 
-        if issubclass(self.__class__, other.__class__):
-            return self.quantity + other.quantity
-        return None

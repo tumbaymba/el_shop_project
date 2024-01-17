@@ -56,10 +56,14 @@ class Item:
     def calculate_total_price(self):
         return self.price * self.quantity
 
+    def __add__(self, other) -> int | None:
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+        return None
+
     def apply_discount(self):
         self.price = self.price * self.pay_rate
         return self.price
 
 all = Item.all
 
-#print(Item.all)
