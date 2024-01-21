@@ -3,12 +3,10 @@ import os
 
 
 class Item:
-    """
-    Класс для представления товара в магазине
-    """
     pay_rate = 0.85
     all = []
-    #file = "..src/items.csv"
+
+    # file = "..src/items.csv"
 
     def __init__(self, name: str, price: float, quantity: int):
         self.__name = name
@@ -23,18 +21,28 @@ class Item:
         return f'{self.__name}'
 
     file = "../src/items.csv"
+
     @classmethod
     def instantiate_from_csv(cls, file="../src/items.csv") -> None:
         Item.all = []
         cls.all.clear
-
-        with open("../src/items.csv", 'r') as csvfile:
-            #content = csvfile.read()
-            #print(content)
-            data = csv.DictReader(csvfile)
-            product: dict
-            for product in data:
-                cls(product['name'], cls.string_to_number(product['price']), cls.string_to_number(product['quantity']))
+        try:
+            with open("../src/items.csv", 'r') as csvfile:
+                # content = csvfile.read()
+                # print(content)
+                data = csv.DictReader(csvfile)
+                product: dict
+                for product in data:
+                    cls(product['name'], cls.string_to_number(product['price']),
+                        cls.string_to_number(product['quantity']))
+                return all
+        except FileNotFoundError:
+            print("FileNotFoundError: Отсутствует файл item.csv")
+        except:
+            if len(product.keys()) < 3:
+                raise InstantiateCSVError
+            elif product.keys() is None:
+                raise InstantiateCSVError
 
     @staticmethod
     def string_to_number(number: str) -> int:
@@ -52,7 +60,6 @@ class Item:
             raise ValueError("Количество букв в наименовании больше 10")
         self.__name = len_name[:10]
 
-
     def calculate_total_price(self):
         return self.price * self.quantity
 
@@ -65,5 +72,14 @@ class Item:
         self.price = self.price * self.pay_rate
         return self.price
 
-all = Item.all
 
+class InstantiateCSVError(Exception):
+
+    def __init__(self, *args, **kwargs):
+        self.message = args[0] if args else 'InstantiateCSVError: Файл item.csv поврежден'
+
+    def __str__(self):
+        return self.message
+
+
+all = Item.all
