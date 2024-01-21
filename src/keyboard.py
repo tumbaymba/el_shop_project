@@ -1,5 +1,6 @@
 from src.item import Item
 
+
 class Mix_lang():
     lang_count = 0
 
@@ -10,19 +11,16 @@ class Mix_lang():
     def language(self):
         return self._language
 
-    @language.setter
     def language(self, value):
         if value == "RU" or value == "EN":
             return self._language
 
     def change_lang(self):
-        self.lang_count += 1
-        if self.lang_count % 2 == 0:
-            self._language = "EN"
-            return self
-        else:
+        if self._language == "EN":
             self._language = "RU"
-            return self
+        else:
+            self._language = "EN"
+        return self
 
 
 class Keyboard(Item, Mix_lang):
