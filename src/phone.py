@@ -8,7 +8,6 @@ class Phone(Item):
         super().__init__(name, price, quantity)
         self._number_of_sim = number_of_sim
 
-
     def __repr__(self) -> str:
 
         return f"{self.__class__.__name__}('{self.name}', " \
@@ -22,9 +21,7 @@ class Phone(Item):
     @number_of_sim.setter
     def number_of_sim(self, value: int) -> None:
 
-        if value >= 0:
+        if isinstance(value, int) and value > 0:
             self._number_of_sim = value
         else:
             raise ValueError("Количество SIM- карт должно быть целым числом и больше 0.")
-
-

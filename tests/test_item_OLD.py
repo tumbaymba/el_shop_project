@@ -1,7 +1,8 @@
-"""Здесь надо написать тесты с использованием pytest для модуля item."""
 import pytest
 import csv
-from src.item import Item
+from config import ITEMS_PATH, BAD_PATH, BROKEN_FILE
+from src.item import Item, InstantiateCSVError
+
 
 item = Item("Смартфон", 10000, 100)
 

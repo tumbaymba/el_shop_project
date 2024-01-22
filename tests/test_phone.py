@@ -1,24 +1,35 @@
+import pytest
 from src.phone import Phone
 from src.item import Item
 
-phone1 = Phone("iPhone 14", 120000, 5, 2)
-item1 = Item("Смартфон", 10000, 20)
 
-def test_str():
-    assert phone1.__str__() == "iPhone 14"
+@pytest.fixture
+def phone():
+    return Phone("iPhone 14", 120000, 5, 2)
 
-def test_repr():
-    assert phone1.__repr__() == "Phone('iPhone 14', 120000, 5, 2)"
 
-def test_number_of_sim():
-    assert phone1.number_of_sim == 2
+@pytest.fixture
+def item():
+    return Item("Смартфон", 10000, 20)
 
-def test_error_number_of_sim():
-    if phone1.number_of_sim <= 0:
-        assert phone1.number_of_sim == "ValueError: Количество симкарт должно быть больше нуля."
 
-def test_add():
+def test_str(phone):
+    assert str(phone) == "iPhone 14"
 
-    assert phone1 + item1 == 25
-    assert phone1 + phone1 == 10
 
+def test_repr(phone):
+    assert str(phone) == "Phone('iPhone 14', 120000, 5, 2)"
+
+
+def test_number_of_sim(phone):
+    assert phone.number_of_sim == 2
+
+
+def test_error_number_of_sim(phone):
+    with pytest.raises(ValueError):
+        phone.number_of_sim = -1
+
+
+def test_add(phone, item):
+    assert phone + item == 25
+    assert phone + phone == 10
