@@ -18,7 +18,7 @@ def test_str(phone):
 
 
 def test_repr(phone):
-    assert str(phone) == "Phone('iPhone 14', 120000, 5, 2)"
+    assert repr(phone) == "Phone('iPhone 14', 120000, 5, 2)"
 
 
 def test_number_of_sim(phone):
